@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<!-- Handwriting font -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    background: #ffd6e8;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+}
+
+.section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d88;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#book {
+    display: none;
+    width: 90%;
+    max-width: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+#endOptions {
+    display: none;
+    margin-top: 20px;
+}
+
+#letterSection {
+    padding: 40px 20px;
+    background: #fff0f6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Intro -->
+<div class="section" id="intro">
+    <h2> for my special lady </h2>
+    <button onclick="openBook()">touch me 🫦</button>
+</div>
+
+<!-- Book Section -->
+<div class="section" id="bookSection">
+    <div id="book">
+        <div class="slider" id="slider">
+
+            <div class="slide"><img src="img1.jpg"></div>
+            <div class="slide"><img src="img2.jpg"></div>
+            <div class="slide"><img src="img3.jpg"></div>
+            <div class="slide"><img src="img1.jpg"></div>
+            <div class="slide"><img src="img2.jpg"></div>
+
+        </div>
+
+        <button id="nextBtn" onclick="nextSlide()">Next ❤️</button>
+
+        <div id="endOptions">
+            <button onclick="restart()">Read Again</button>
+            <button onclick="goToLetter()">Close Book</button>
+        </div>
+    </div>
+</div>
+
+<!-- Letter Section -->
+<div id="letterSection">
+    <h2>To the love of my life</h2>
+    <p>
+        Replace this text with your real letter.
+        Write from your heart.
+        No animation needed.
+        Just honesty.
+    </p>
+</div>
+
+<script>
+let current = 0;
+let totalSlides = 5;
+
+function openBook() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("book").style.display = "block";
+}
+
+function nextSlide() {
+    if (current < totalSlides - 1) {
+        current++;
+        document.getElementById("slider").style.transform =
+            "translateX(-" + current * 100 + "%)";
+    } else {
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("endOptions").style.display = "block";
+    }
+}
+
+function restart() {
+    current = 0;
+    document.getElementById("slider").style.transform = "translateX(0%)";
+    document.getElementById("nextBtn").style.display = "inline-block";
+    document.getElementById("endOptions").style.display = "none";
+}
+
+function goToLetter() {
+    document.getElementById("bookSection").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("letterSection").scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>
